@@ -14,31 +14,13 @@ export class PacketCarTelemetryDataParser extends F1Parser {
         type: new PacketHeaderParser(packetFormat),
       })
       .array('m_carTelemetryData', {
-        length:
-          packetFormat === 2020 ||
-          packetFormat === 2021 ||
-          packetFormat === 2022
-            ? 22
-            : 20,
+        length: 22,
         type: new CarTelemetryDataParser(packetFormat),
       });
 
-    if (packetFormat === 2018 || packetFormat === 2019) {
-      this.uint32le('m_buttonStatus');
-    }
-
-    if (packetFormat === 2020) {
-      this.uint32le('m_buttonStatus')
-        .uint8('m_mfdPanelIndex')
-        .uint8('m_mfdPanelIndexSecondaryPlayer')
-        .int8('m_suggestedGear');
-    }
-
-    if (packetFormat === 2021 || packetFormat === 2022) {
-      this.uint8('m_mfdPanelIndex')
-        .uint8('m_mfdPanelIndexSecondaryPlayer')
-        .int8('m_suggestedGear');
-    }
+    this.uint8('m_mfdPanelIndex')
+      .uint8('m_mfdPanelIndexSecondaryPlayer')
+      .int8('m_suggestedGear');
 
     this.data = this.fromBuffer(buffer);
   }
