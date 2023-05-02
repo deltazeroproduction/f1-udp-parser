@@ -14,18 +14,11 @@ export class PacketLapDataParser extends F1Parser {
         type: new PacketHeaderParser(packetFormat),
       })
       .array('m_lapData', {
-        length:
-          packetFormat === 2020 ||
-          packetFormat === 2021 ||
-          packetFormat === 2022
-            ? 22
-            : 20,
+        length: 22,
         type: new LapDataParser(packetFormat),
       });
 
-    if (packetFormat === 2022) {
-      this.uint8('m_timeTrialPBCarIdx').uint8('m_timeTrialRivalCarIdx');
-    }
+    this.uint8('m_timeTrialPBCarIdx').uint8('m_timeTrialRivalCarIdx');
 
     this.data = this.fromBuffer(buffer);
   }

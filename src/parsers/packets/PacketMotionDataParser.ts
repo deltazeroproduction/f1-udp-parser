@@ -17,12 +17,7 @@ export class PacketMotionDataParser extends F1Parser {
         type: new PacketHeaderParser(packetFormat),
       })
       .array('m_carMotionData', {
-        length:
-          packetFormat === 2020 ||
-          packetFormat === 2021 ||
-          packetFormat === 2022
-            ? 22
-            : 20,
+        length: 22,
         type: new CarMotionDataParser(),
       })
       .array('m_suspensionPosition', {
@@ -40,12 +35,34 @@ export class PacketMotionDataParser extends F1Parser {
       .array('m_wheelSpeed', {
         length: 4,
         type: new Parser().floatle(''),
-      })
-      .array('m_wheelSlip', {
+      });
+
+    if (packetFormat === 2023) {
+      this.array('m_wheelSlipRatio', {
         length: 4,
         type: new Parser().floatle(''),
       })
-      .floatle('m_localVelocityX')
+        .array('m_wheelSlipAngle', {
+          length: 4,
+          type: new Parser().floatle(''),
+        })
+        .array('m_wheelLatForce', {
+          length: 4,
+          type: new Parser().floatle(''),
+        })
+        .array('m_wheelLongForce', {
+          length: 4,
+          type: new Parser().floatle(''),
+        })
+        .floatle('m_heightOfCOGAboveGround');
+    } else {
+      this.array('m_wheelSlip', {
+        length: 4,
+        type: new Parser().floatle(''),
+      });
+    }
+
+    this.floatle('m_localVelocityX')
       .floatle('m_localVelocityY')
       .floatle('m_localVelocityZ')
       .floatle('m_angularVelocityX')

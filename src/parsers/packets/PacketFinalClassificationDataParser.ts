@@ -16,7 +16,7 @@ export class PacketFinalClassificationDataParser extends F1Parser {
       .uint8('m_numCars')
       .array('m_classificationData', {
         length: 22,
-        type: new FinalClassificationDataParser(packetFormat),
+        type: new FinalClassificationDataParser(),
       });
 
     this.data = this.fromBuffer(buffer);

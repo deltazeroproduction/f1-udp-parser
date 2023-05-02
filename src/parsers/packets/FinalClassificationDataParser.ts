@@ -3,7 +3,7 @@ import {Parser} from 'binary-parser';
 import {F1Parser} from '../F1Parser';
 
 export class FinalClassificationDataParser extends F1Parser {
-  constructor(packetFormat: number) {
+  constructor() {
     super();
 
     this.uint8('m_position')
