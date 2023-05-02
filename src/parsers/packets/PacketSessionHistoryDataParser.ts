@@ -23,7 +23,7 @@ export class PacketSessionHistoryDataParser extends F1Parser {
       .uint8('m_bestSector3LapNum')
       .array('m_lapHistoryData', {
         length: 100,
-        type: new LapHistoryDataParser(),
+        type: new LapHistoryDataParser(packetFormat),
       })
       .array('m_tyreStintsHistoryData', {
         length: 8,
