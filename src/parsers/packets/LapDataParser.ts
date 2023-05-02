@@ -6,66 +6,44 @@ export class LapDataParser extends F1Parser {
 
     this.endianess('little');
 
-    if (packetFormat === 2021 || packetFormat === 2022) {
-      this.uint32le('m_lastLapTimeInMS').uint32le('m_currentLapTimeInMS');
-    } else {
-      this.floatle('m_lastLapTime').floatle('m_currentLapTime');
-    }
+    this.uint32le('m_lastLapTimeInMS').uint32le('m_currentLapTimeInMS');
 
-    if (packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat === 2023) {
+      this.uint16le('m_sector1TimeInMS')
+        .uint8('m_sector1TimeMinutes')
+        .uint16le('m_sector2TimeInMS')
+        .uint8('m_sector2TimeMinutes')
+        .uint16le('m_deltaToCarInFrontInMS')
+        .uint16le('m_deltaToRaceLeaderInMS');
+    } else {
       this.uint16le('m_sector1TimeInMS').uint16le('m_sector2TimeInMS');
     }
 
-    if (packetFormat === 2018 || packetFormat === 2019 ||
-        packetFormat === 2020) {
-      this.floatle('m_bestLapTime');
-    }
-
-    if (packetFormat === 2018 || packetFormat === 2019) {
-      this.floatle('m_sector1Time').floatle('m_sector2Time');
-    }
-
-    if (packetFormat === 2020) {
-      this.uint8('m_bestLapNum')
-          .uint16le('m_bestLapSector1TimeInMS')
-          .uint16le('m_bestLapSector2TimeInMS')
-          .uint16le('m_bestLapSector3TimeInMS')
-          .uint16le('m_bestOverallSector1TimeInMS')
-          .uint8('m_bestOverallSector1LapNum')
-          .uint16le('m_bestOverallSector2TimeInMS')
-          .uint8('m_bestOverallSector2LapNum')
-          .uint16le('m_bestOverallSector3TimeInMS')
-          .uint8('m_bestOverallSector3LapNum');
-    }
-
     this.floatle('m_lapDistance')
-        .floatle('m_totalDistance')
-        .floatle('m_safetyCarDelta')
-        .uint8('m_carPosition')
-        .uint8('m_currentLapNum')
-        .uint8('m_pitStatus');
+      .floatle('m_totalDistance')
+      .floatle('m_safetyCarDelta')
+      .uint8('m_carPosition')
+      .uint8('m_currentLapNum')
+      .uint8('m_pitStatus')
+      .uint8('m_numPitStops')
+      .uint8('m_sector')
+      .uint8('m_currentLapInvalid')
+      .uint8('m_penalties');
 
-    if (packetFormat === 2021 || packetFormat === 2022) {
-      this.uint8('m_numPitStops');
+    if (packetFormat === 2023) {
+      this.uint8('m_totalWarnings').uint8('m_cornerCuttingWarnings');
+    } else {
+      this.uint8('m_warnings');
     }
 
-    this.uint8('m_sector').uint8('m_currentLapInvalid').uint8('m_penalties');
-
-    if (packetFormat === 2021 || packetFormat === 2022) {
-      this.uint8('m_warnings')
-          .uint8('m_numUnservedDriveThroughPens')
-          .uint8('m_numUnservedStopGoPens');
-    }
-
-    this.uint8('m_gridPosition')
-        .uint8('m_driverStatus')
-        .uint8('m_resultStatus');
-
-    if (packetFormat === 2021 || packetFormat === 2022) {
-      this.uint8('m_pitLaneTimerActive')
-          .uint16le('m_pitLaneTimeInLaneInMS')
-          .uint16le('m_pitStopTimerInMS')
-          .uint8('m_pitStopShouldServePen');
-    }
+    this.uint8('m_numUnservedDriveThroughPens')
+      .uint8('m_numUnservedStopGoPens')
+      .uint8('m_gridPosition')
+      .uint8('m_driverStatus')
+      .uint8('m_resultStatus')
+      .uint8('m_pitLaneTimerActive')
+      .uint16le('m_pitLaneTimeInLaneInMS')
+      .uint16le('m_pitStopTimerInMS')
+      .uint8('m_pitStopShouldServePen');
   }
 }
