@@ -1,0 +1,88 @@
+{
+  "name": "@deltazeroproduction/f1-UDP-parser",
+  "version": "1.0.0",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deltazeroproduction/f1-UDP-parser.git"
+  },
+  "dependencies": {
+    "binary-parser": "^1.5.0",
+    "struct": "^0.0.12"
+  },
+  "devDependencies": {
+    "@types/binary-parser": "^1.5.0",
+    "@types/jest": "^29.2.5",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.26.0",
+    "gts": "^3.1.1",
+    "husky": "^8.0.3",
+    "jest": "^29.3.1",
+    "lint-staged": "^13.1.0",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "start": "npm run build && node build/src/playground/index.js",
+    "build": "tsc",
+    "build:link": "npm run build && npm link",
+    "type-check:watch": "npm run type-check -- --watch",
+    "type-check": "tsc --noEmit",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "test": "jest",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,css}": [
+      "gts fix",
+      "git add"
+    ]
+  },
+  "keywords": [
+    "automotive",
+    "grand prix",
+    "f12022",
+    "f122",
+    "f1 2022",
+    "f12023",
+    "f123",
+    "f1 2023",
+    "formula 1",
+    "f1",
+    "codemasters",
+    "EA",
+    "udp",
+    "telemetry",
+    "racing",
+    "simracing",
+    "gaming",
+    "formula",
+    "ps4",
+    "ps5",
+    "xbox",
+    "xbox one",
+    "playstation",
+    "playstation 4",
+    "playstation 5",
+    "esports",
+    "e sports",
+    "e-sports",
+    "videogame"
+  ]
+}
