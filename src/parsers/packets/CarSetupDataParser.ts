@@ -23,8 +23,6 @@ export class CarSetupDataParser extends F1Parser {
       .floatle('m_rearRightTyrePressure')
       .floatle('m_frontLeftTyrePressure')
       .floatle('m_frontRightTyrePressure')
-      .floatle('m_frontTyrePressure')
-      .floatle('m_rearTyrePressure')
       .uint8('m_ballast')
       .floatle('m_fuelLoad');
   }
