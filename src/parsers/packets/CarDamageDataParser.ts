@@ -1,5 +1,4 @@
 import {Parser} from 'binary-parser';
-
 import {F1Parser} from '../F1Parser';
 
 export class CarDamageDataParser extends F1Parser {

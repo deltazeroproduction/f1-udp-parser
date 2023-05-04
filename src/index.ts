@@ -1,5 +1,4 @@
 // tslint:disable-next-line
-import {Parser} from 'binary-parser';
 import * as dgram from 'dgram';
 import {EventEmitter} from 'events';
 import {AddressInfo} from 'net';
@@ -21,6 +20,7 @@ import {
   PacketParticipantsDataParser,
   PacketSessionDataParser,
   PacketSessionHistoryDataParser,
+  PacketTyreSetsDataParser,
 } from './parsers/packets';
 import * as packetTypes from './parsers/packets/types';
 import {Address, Options, ParsedMessage} from './types';
@@ -139,6 +139,9 @@ class F1TelemetryClient extends EventEmitter {
 
       case PACKETS.sessionHistory:
         return PacketSessionHistoryDataParser;
+
+      case PACKETS.tyreSets:
+        return PacketTyreSetsDataParser;
 
       default:
         return null;

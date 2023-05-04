@@ -1,6 +1,5 @@
 import {BUTTON_FLAGS} from './buttonFlags';
 import {DRIVERS} from './drivers';
-import {ERAS} from './eras';
 import {ERS_DEPLOY_MODE} from './ersDeployMode';
 import {EVENT_CODES} from './eventCodes';
 import {FORMULAS} from './formulas';
@@ -23,7 +22,6 @@ import {WEATHER} from './weather';
 export {
   BUTTON_FLAGS,
   DRIVERS,
-  ERAS,
   ERS_DEPLOY_MODE,
   EVENT_CODES,
   FORMULAS,

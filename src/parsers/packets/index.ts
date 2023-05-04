@@ -12,6 +12,7 @@ import {PacketMotionDataParser} from './PacketMotionDataParser';
 import {PacketParticipantsDataParser} from './PacketParticipantsDataParser';
 import {PacketSessionDataParser} from './PacketSessionDataParser';
 import {PacketSessionHistoryDataParser} from './PacketSessionHistoryDataParser';
+import {PacketTyreSetsDataParser} from './PacketTyreSetsDataParser';
 
 export {
   PacketCarSetupDataParser,
@@ -28,4 +29,5 @@ export {
   PacketSessionDataParser,
   PacketCarDamageDataParser,
   PacketSessionHistoryDataParser,
+  PacketTyreSetsDataParser,
 };

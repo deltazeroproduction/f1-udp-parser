@@ -1,7 +1,5 @@
 import {Parser} from 'binary-parser';
-
 import {F1Parser} from '../F1Parser';
-
 import {CarMotionDataParser} from './CarMotionDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketMotionData} from './types';
