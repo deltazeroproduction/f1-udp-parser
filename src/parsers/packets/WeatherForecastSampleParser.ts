@@ -1,7 +1,7 @@
 import {F1Parser} from '../F1Parser';
 
 export class WeatherForecastSampleParser extends F1Parser {
-  constructor(packetFormat: number) {
+  constructor() {
     super();
 
     this.endianess('little')

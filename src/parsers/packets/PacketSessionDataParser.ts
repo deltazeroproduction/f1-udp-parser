@@ -36,7 +36,7 @@ export class PacketSessionDataParser extends F1Parser {
       .uint8('m_numWeatherForecastSamples')
       .array('m_weatherForecastSamples', {
         length: 56,
-        type: new WeatherForecastSampleParser(packetFormat),
+        type: new WeatherForecastSampleParser(),
       })
       .uint8('m_forecastAccuracy')
       .uint8('m_aiDifficulty')
