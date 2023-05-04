@@ -2,7 +2,7 @@ import {Parser} from 'binary-parser';
 import {F1Parser} from '../F1Parser';
 
 export class CarTelemetryDataParser extends F1Parser {
-  constructor(packetFormat: number) {
+  constructor() {
     super();
     this.uint16le('m_speed')
       .floatle('m_throttle')
