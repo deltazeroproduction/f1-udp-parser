@@ -1,5 +1,5 @@
 {
-  "name": "@deltazeroproduction/f1-UDP-parser",
+  "name": "@deltazeroproduction/f1-udp-parser",
   "version": "1.0.0",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/deltazeroproduction/f1-UDP-parser.git"
+    "url": "https://github.com/deltazeroproduction/f1-udp-parser.git"
   },
   "dependencies": {
     "binary-parser": "^1.5.0",

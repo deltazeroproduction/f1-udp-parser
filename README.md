@@ -7,13 +7,13 @@ This is a TypeScript UDP client and telemetry parser for EA - Codemaster's F1 22
 ## Installing
 
 ```
-$ npm install @deltazeroproduction/f1-UDP-parser
+$ npm install @deltazeroproduction/f1-udp-parser
 ```
 
 or
 
 ```
-$ yarn add @deltazeroproduction/f1-UDP-parser
+$ yarn add @deltazeroproduction/f1-udp-parser
 ```
 
 ## Running the playground
