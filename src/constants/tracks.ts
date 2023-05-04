@@ -32,4 +32,6 @@ export const TRACKS: Track[] = [
   {name: 'Portimao'},
   {name: 'Jeddah'},
   {name: 'Miami'},
+  {name: 'Las Vegas'},
+  {name: 'Losail'},
 ];

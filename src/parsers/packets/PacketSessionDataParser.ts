@@ -68,7 +68,7 @@ export class PacketSessionDataParser extends F1Parser {
         .uint8('m_temperatureUnitsSecondaryPlayer')
         .uint8('m_numSafetyCarPeriods')
         .uint8('m_numVirtualSafetyCarPeriods')
-        .uint8('tbc'); //this will can't right but it's what shows in the first draft of the doc
+        .uint8('tbc'); //this can't be right but it's what shows in the first draft of the doc
     }
 
     this.data = this.fromBuffer(buffer);
