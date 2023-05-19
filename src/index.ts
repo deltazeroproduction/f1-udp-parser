@@ -21,6 +21,7 @@ import {
   PacketSessionDataParser,
   PacketSessionHistoryDataParser,
   PacketTyreSetsDataParser,
+  PacketMotionExDataParser,
 } from './parsers/packets';
 import * as packetTypes from './parsers/packets/types';
 import {Address, Options, ParsedMessage} from './types';
@@ -142,6 +143,9 @@ class F1TelemetryClient extends EventEmitter {
 
       case PACKETS.tyreSets:
         return PacketTyreSetsDataParser;
+
+      case PACKETS.motionEx:
+        return PacketMotionExDataParser;
 
       default:
         return null;

@@ -12,4 +12,5 @@ export const PACKETS = {
   carDamage: 'carDamage',
   sessionHistory: 'sessionHistory',
   tyreSets: 'tyreSets',
+  motionEx: 'motionEx',
 };

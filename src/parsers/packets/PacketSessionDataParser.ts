@@ -67,7 +67,7 @@ export class PacketSessionDataParser extends F1Parser {
         .uint8('m_temperatureUnitsSecondaryPlayer')
         .uint8('m_numSafetyCarPeriods')
         .uint8('m_numVirtualSafetyCarPeriods')
-        .uint8('tbc'); // probably number of red flags
+        .uint8('m_numRedFlagPeriods');
     }
 
     this.data = this.fromBuffer(buffer);
