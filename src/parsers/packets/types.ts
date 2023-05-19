@@ -424,7 +424,6 @@ export interface PacketTyreSetsData {
 
 export interface PacketMotionExData {
   m_header: PacketHeader;
-  m_carIdx: number;
   m_suspensionPosition: number[];
   m_suspensionVelocity: number[];
   m_suspensionAcceleration: number[];

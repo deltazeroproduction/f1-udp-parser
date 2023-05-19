@@ -13,7 +13,6 @@ export class PacketMotionExDataParser extends F1Parser {
       .nest('m_header', {
         type: new PacketHeaderParser(packetFormat),
       })
-      .uint8('m_carIdx')
       .array('m_suspensionPosition', {
         length: 4,
         type: new Parser().floatle(''),
