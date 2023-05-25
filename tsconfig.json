@@ -8,5 +8,11 @@
     "target": "ESNext",
     "moduleResolution": "node"
   },
-  "include": ["src/*.ts", "src/**/*.ts", "test/*.ts", "test/**/*.ts"]
+  "include": [
+    "src/*.ts",
+    "src/**/*.ts",
+    "test/*.ts",
+    "test/**/*.ts",
+    "src/index_new.js"
+  ]
 }
