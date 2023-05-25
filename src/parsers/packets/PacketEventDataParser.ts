@@ -146,29 +146,29 @@ export class PacketEventDataParser extends F1Parser {
     const eventStringCode = this.getEventStringCode(buffer, packetFormat);
 
     if (eventStringCode === EVENT_CODES.FastestLap) {
-      this.nest('FastestLap', {type: new FastestLapParser()});
+      this.nest('m_eventDetails', {type: new FastestLapParser()});
     } else if (eventStringCode === EVENT_CODES.Retirement) {
-      this.nest('Retirement', {type: new RetirementParser()});
+      this.nest('m_eventDetails', {type: new RetirementParser()});
     } else if (eventStringCode === EVENT_CODES.TeammateInPits) {
-      this.nest('TeamMateInPits', {type: new TeamMateInPitsParser()});
+      this.nest('m_eventDetails', {type: new TeamMateInPitsParser()});
     } else if (eventStringCode === EVENT_CODES.RaceWinner) {
-      this.nest('RaceWinner', {type: new RaceWinnerParser()});
+      this.nest('m_eventDetails', {type: new RaceWinnerParser()});
     } else if (eventStringCode === EVENT_CODES.PenaltyIssued) {
-      this.nest('Penalty', {type: new PenaltyParser()});
+      this.nest('m_eventDetails', {type: new PenaltyParser()});
     } else if (eventStringCode === EVENT_CODES.SpeedTrapTriggered) {
-      this.nest('SpeedTrap', {type: new SpeedTrapParser()});
+      this.nest('m_eventDetails', {type: new SpeedTrapParser()});
     } else if (eventStringCode === EVENT_CODES.StartLights) {
-      this.nest('StartLights', {type: new StartLightsParser()});
+      this.nest('m_eventDetails', {type: new StartLightsParser()});
     } else if (eventStringCode === EVENT_CODES.DriveThroughServed) {
-      this.nest('DriveThroughPenaltyServed', {
+      this.nest('m_eventDetails', {
         type: new DriveThroughPenaltyServedParser(),
       });
     } else if (eventStringCode === EVENT_CODES.StopGoServed) {
-      this.nest('StopGoPenaltyServed', {type: new StopGoPenaltyServedParser()});
+      this.nest('m_eventDetails', {type: new StopGoPenaltyServedParser()});
     } else if (eventStringCode === EVENT_CODES.Flashback) {
-      this.nest('Flashback', {type: new FlashbackParser()});
+      this.nest('m_eventDetails', {type: new FlashbackParser()});
     } else if (eventStringCode === EVENT_CODES.ButtonStatus) {
-      this.nest('Buttons', {type: new ButtonsParser()});
+      this.nest('m_eventDetails', {type: new ButtonsParser()});
     }
   };
 
@@ -176,29 +176,29 @@ export class PacketEventDataParser extends F1Parser {
     const eventStringCode = this.getEventStringCode(buffer, packetFormat);
 
     if (eventStringCode === EVENT_CODES.FastestLap) {
-      this.nest('FastestLap', {type: new FastestLapParser()});
+      this.nest('m_eventDetails', {type: new FastestLapParser()});
     } else if (eventStringCode === EVENT_CODES.Retirement) {
-      this.nest('Retirement', {type: new RetirementParser()});
+      this.nest('m_eventDetails', {type: new RetirementParser()});
     } else if (eventStringCode === EVENT_CODES.TeammateInPits) {
-      this.nest('TeamMateInPits', {type: new TeamMateInPitsParser()});
+      this.nest('m_eventDetails', {type: new TeamMateInPitsParser()});
     } else if (eventStringCode === EVENT_CODES.RaceWinner) {
-      this.nest('RaceWinner', {type: new RaceWinnerParser()});
+      this.nest('m_eventDetails', {type: new RaceWinnerParser()});
     } else if (eventStringCode === EVENT_CODES.PenaltyIssued) {
-      this.nest('Penalty', {type: new PenaltyParser()});
+      this.nest('m_eventDetails', {type: new PenaltyParser()});
     } else if (eventStringCode === EVENT_CODES.SpeedTrapTriggered) {
-      this.nest('SpeedTrap', {type: new SpeedTrapParser()});
+      this.nest('m_eventDetails', {type: new SpeedTrapParser()});
     } else if (eventStringCode === EVENT_CODES.StartLights) {
-      this.nest('StartLights', {type: new StartLightsParser()});
+      this.nest('m_eventDetails', {type: new StartLightsParser()});
     } else if (eventStringCode === EVENT_CODES.DriveThroughServed) {
-      this.nest('DriveThroughPenaltyServed', {
+      this.nest('m_eventDetails', {
         type: new DriveThroughPenaltyServedParser(),
       });
     } else if (eventStringCode === EVENT_CODES.StopGoServed) {
-      this.nest('StopGoPenaltyServed', {type: new StopGoPenaltyServedParser()});
+      this.nest('m_eventDetails', {type: new StopGoPenaltyServedParser()});
     } else if (eventStringCode === EVENT_CODES.Flashback) {
-      this.nest('Flashback', {type: new FlashbackParser()});
+      this.nest('m_eventDetails', {type: new FlashbackParser()});
     } else if (eventStringCode === EVENT_CODES.ButtonStatus) {
-      this.nest('Buttons', {type: new ButtonsParser()});
+      this.nest('m_eventDetails', {type: new ButtonsParser()});
     } else if (eventStringCode === EVENT_CODES.Overtake) {
       this.nest('m_eventDetails', {type: new OvertakeParser()});
     }
