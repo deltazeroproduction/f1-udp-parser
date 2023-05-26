@@ -105,7 +105,7 @@ export class ButtonsParser extends F1Parser {
   constructor() {
     super();
 
-    this.endianess('little').uint32le('m_buttonStatus');
+    this.endianess('little').uint32le('buttonStatus');
   }
 }
 
