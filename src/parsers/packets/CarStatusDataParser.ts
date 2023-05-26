@@ -33,6 +33,6 @@ export class CarStatusDataParser extends F1Parser {
       .floatle('m_ersHarvestedThisLapMGUK')
       .floatle('m_ersHarvestedThisLapMGUH')
       .floatle('m_ersDeployedThisLap')
-      .int8('m_networkPaused');
+      .uint8('m_networkPaused');
   }
 }

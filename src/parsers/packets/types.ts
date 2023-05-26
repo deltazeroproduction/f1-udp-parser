@@ -176,7 +176,7 @@ export interface EventDataDetails {
   infringementType: number;
   otherVehicleIdx: number;
   time: number;
-  lapNum: bigint;
+  lapNum: number;
   placesGained: number;
   speed: number;
   isOverallFastestInSession: number;
