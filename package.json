@@ -38,7 +38,7 @@
     "clean": "gts clean",
     "compile": "tsc -p .",
     "fix": "gts fix",
-    "test": "jest",
+    "test": "npm run build && node test/test.js",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
     "posttest": "npm run check"
