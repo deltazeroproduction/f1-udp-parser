@@ -73,6 +73,7 @@ class F1TelemetryClient extends EventEmitter {
 
     const packetData = new parser(message, m_packetFormat);
     const packetID = Object.keys(constants.PACKETS)[m_packetId];
+    if(packetID === 'tyreSets') return;
 
     // emit parsed message
     return {packetData, packetID};
