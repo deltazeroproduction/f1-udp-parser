@@ -420,6 +420,7 @@ export interface PacketTyreSetsData {
   m_header: PacketHeader;
   m_carIdx: number;
   m_tyreSetData: TyreSetData[];
+  m_fittedIdx: number;
 }
 
 export interface PacketMotionExData {
