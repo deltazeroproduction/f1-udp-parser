@@ -19,6 +19,14 @@ export interface Options {
   port?: number;
   forwardAddresses?: Address[] | undefined;
   skipParsing?: boolean;
+  testModeActive?: boolean;
+}
+
+export interface TestMode {
+  bufferStream: NodeJS.WritableStream;
+  fileCount: number;
+  bufferCount: number;
+  logDir: string;
 }
 
 export interface Address {

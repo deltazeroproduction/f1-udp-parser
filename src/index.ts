@@ -2,6 +2,9 @@
 import * as dgram from 'dgram';
 import {EventEmitter} from 'events';
 import {AddressInfo} from 'net';
+import fs from 'fs';
+import os from 'os';
+import path from 'path';
 
 import * as constants from './constants';
 import * as constantsTypes from './constants/types';
@@ -24,7 +27,7 @@ import {
   PacketMotionExDataParser,
 } from './parsers/packets';
 import * as packetTypes from './parsers/packets/types';
-import {Address, Options, ParsedMessage} from './types';
+import {Address, Options, ParsedMessage, TestMode} from './types';
 
 const DEFAULT_PORT = 20777;
 const FORWARD_ADDRESSES = undefined;
@@ -37,15 +40,21 @@ class F1TelemetryClient extends EventEmitter {
   port: number;
   forwardAddresses?: Address[];
   socket?: dgram.Socket;
+  testModeActive?: boolean = false;
+  testMode?: TestMode;
 
   constructor(opts: Options = {}) {
     super();
 
-    const {port = DEFAULT_PORT, forwardAddresses = FORWARD_ADDRESSES} = opts;
+    const {port = DEFAULT_PORT, forwardAddresses = FORWARD_ADDRESSES, testModeActive } = opts;
 
     this.port = port;
     this.forwardAddresses = forwardAddresses;
     this.socket = dgram.createSocket('udp4');
+
+    this.testModeActive = testModeActive;
+    if(testModeActive) this.testMode = initializeTestMode.call(this);
+
   }
 
   /**
@@ -171,6 +180,24 @@ class F1TelemetryClient extends EventEmitter {
     // emit parsed message
     this.emit(parsedMessage.packetID, parsedMessage.packetData.data);
   }
+  /**
+   *
+   * @param {Buffer} message
+   */
+  handleTestModeMessage(message: Buffer) {
+    const { testMode } = this;
+    if(!testMode) return;
+
+    testMode.bufferStream.write(`${JSON.stringify(message.toJSON().data)},\n`);
+    testMode.bufferCount += 1;
+
+    if(testMode.bufferCount > 10000) {
+      testMode.bufferStream.end();
+      testMode.fileCount++;
+      testMode.bufferCount = 0;
+      testMode.bufferStream = fs.createWriteStream(`${testMode.logDir}/chunk_${testMode.fileCount}.json`);
+    }
+  }
 
   /**
    *
@@ -214,7 +241,13 @@ class F1TelemetryClient extends EventEmitter {
       this.socket.setBroadcast(true);
     });
 
-    this.socket.on('message', (m) => this.handleMessage(m));
+    this.socket.on('message', (m) => {
+      if(this.testModeActive && this.testMode) {
+        this.handleTestModeMessage(m);
+      } 
+      this.handleMessage(m);
+    
+    });
     this.socket.bind({
       port: this.port,
       exclusive: false,
@@ -244,3 +277,18 @@ export {
   DEFAULT_PORT,
   FORWARD_ADDRESSES,
 };
+
+function initializeTestMode() {
+  const localAppDataDirectory = path.join(os.homedir(), 'AppData', 'Local');
+  const testLogDir = `${localAppDataDirectory}/Podium/udp_logs/${Date.now()}`;
+  fs.mkdirSync(testLogDir);
+  
+  const testMode: TestMode = {
+    bufferStream: fs.createWriteStream(`${testLogDir}/chunk_${0}.json`),
+    fileCount: 0,
+    bufferCount: 0,
+    logDir: testLogDir
+  };
+
+  return testMode;
+}
