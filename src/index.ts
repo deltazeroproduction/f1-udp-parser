@@ -246,7 +246,7 @@ class F1TelemetryClient extends EventEmitter {
       if(this.testModeActive && this.testMode) {
         this.handleTestModeMessage(m);
       } 
-      this.handleMessage(m);
+      else this.handleMessage(m);
     
     });
     this.socket.bind({
