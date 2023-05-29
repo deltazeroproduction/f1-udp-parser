@@ -19,6 +19,53 @@ export class PacketMotionDataParser extends F1Parser {
         type: new CarMotionDataParser(),
       });
 
+    if(packetFormat === 2023) {
+      this.array('m_suspensionPosition', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
+      .array('m_suspensionVelocity', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
+      .array('m_suspensionAcceleration', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
+      .array('m_wheelSpeed', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
+      .array('m_wheelSlipRatio', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
+      .array('m_wheelSlipAngle', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
+      .array('m_wheelLatForce', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
+      .array('m_wheelLongForce', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
+      .floatle('m_heightOfCOGAboveGround')
+      .floatle('m_localVelocityX')
+      .floatle('m_localVelocityY')
+      .floatle('m_localVelocityZ')
+      .floatle('m_angularVelocityX')
+      .floatle('m_angularVelocityY')
+      .floatle('m_angularVelocityZ')
+      .floatle('m_angularAccelerationX')
+      .floatle('m_angularAccelerationY')
+      .floatle('m_angularAccelerationZ')
+      .floatle('m_frontWheelsAngle');
+    }
+
+
     if (packetFormat === 2022) {
       this.array('m_suspensionPosition', {
         length: 4,

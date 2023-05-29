@@ -42,6 +42,7 @@ class F1TelemetryClient extends EventEmitter {
   socket?: dgram.Socket;
   testModeActive?: boolean = false;
   testMode?: TestMode;
+  cache: any = {};
 
   constructor(opts: Options = {}) {
     super();
@@ -51,6 +52,7 @@ class F1TelemetryClient extends EventEmitter {
     this.port = port;
     this.forwardAddresses = forwardAddresses;
     this.socket = dgram.createSocket('udp4');
+    this.cache = {};
 
     this.testModeActive = testModeActive;
     if(testModeActive) this.testMode = initializeTestMode.call(this);
@@ -64,7 +66,7 @@ class F1TelemetryClient extends EventEmitter {
   static parseBufferMessage(message: Buffer): ParsedMessage | undefined {
     const {m_packetFormat, m_packetId} =
       F1TelemetryClient.parsePacketHeader(message);
-
+    
     const parser = F1TelemetryClient.getParserByPacketId(m_packetId);
 
     if (!parser) {
@@ -73,7 +75,6 @@ class F1TelemetryClient extends EventEmitter {
 
     const packetData = new parser(message, m_packetFormat);
     const packetID = Object.keys(constants.PACKETS)[m_packetId];
-    if(packetID === 'tyreSets') return;
 
     // emit parsed message
     return {packetData, packetID};
@@ -90,6 +91,7 @@ class F1TelemetryClient extends EventEmitter {
     const packetFormatParser = new PacketFormatParser();
     const {m_packetFormat} = packetFormatParser.fromBuffer(buffer);
     const packetHeaderParser = new PacketHeaderParser(m_packetFormat);
+    const data = packetHeaderParser.fromBuffer(buffer);
     return packetHeaderParser.fromBuffer(buffer);
   }
 
@@ -173,11 +175,15 @@ class F1TelemetryClient extends EventEmitter {
     }
 
     const parsedMessage = F1TelemetryClient.parseBufferMessage(message);
-
+    
     if (!parsedMessage || !parsedMessage.packetData) {
       return;
     }
-
+    
+    // if(this.cache[parsedMessage?.m_packetId]) this.cache[parsedMessage?.m_packetId] += 1;
+    // else this.cache[parsedMessage?.m_packetId] = 1;
+    // this.cache[parsedMessage?.m_packetId] = message.byteLength;
+    
     // emit parsed message
     this.emit(parsedMessage.packetID, parsedMessage.packetData.data);
   }

@@ -18,7 +18,7 @@ export class PacketTyreSetsDataParser extends F1Parser {
         length: 20,
         type: new TyreSetDataParser(),
       })
-      .uint8('m_fittedIdx');
+      // .uint8('m_fittedIdx');
 
     this.data = this.fromBuffer(buffer);
   }
