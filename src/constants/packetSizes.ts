@@ -14,5 +14,5 @@ export const PACKET_SIZES: {[index: string]: {[index: number]: PacketSize}} = {
   carDamage: {2023: 953, 2022: 948},
   sessionHistory: {2023: 1460, 2022: 1155},
   tyreSets: {2023: 231},
-  motionEx: {2023: 201},
+  motionEx: {2023: 217},
 };

@@ -444,4 +444,5 @@ export interface PacketMotionExData {
   m_angularAccelerationY: number;
   m_angularAccelerationZ: number;
   m_frontWheelsAngle: number;
+  m_wheelVertForce: number[];
 }

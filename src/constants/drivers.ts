@@ -130,5 +130,11 @@ export const DRIVERS: {[index: number]: Driver} = {
   136: {abbreviation: 'DOO', firstName: 'Jack', lastName: 'Doohan'},
   137: {abbreviation: 'COR', firstName: 'Amaury', lastName: 'Cordeel'},
   138: {abbreviation: 'HAU', firstName: 'Dennis', lastName: 'Hauger'},
+  139: {abbreviation: 'WIL', firstName: 'Calan', lastName: 'Williams'},
+  140: {abbreviation: 'CHA', firstName: 'Jamie', lastName: 'Chadwick'},
+  141: {abbreviation: 'KOB', firstName: 'Kamui', lastName: 'Kobayashi'},
+  142: {abbreviation: 'MAL', firstName: 'Pastor', lastName: 'Maldonado'},
+  143: {abbreviation: 'HAK', firstName: 'Mika', lastName: 'Hakkinen'},
+  144: {abbreviation: 'MAN', firstName: 'Nigel', lastName: 'Mansell'},
   255: {abbreviation: 'DRV', firstName: 'Network', lastName: 'Human'},
 };
