@@ -31,7 +31,6 @@ import {Address, Options, ParsedMessage, TestMode} from './types';
 
 const DEFAULT_PORT = 20777;
 const FORWARD_ADDRESSES = undefined;
-const ADDRESS = 'localhost';
 
 /**
  *
@@ -46,7 +45,7 @@ class F1TelemetryClient extends EventEmitter {
   constructor(opts: Options = {}) {
     super();
 
-    const {port = DEFAULT_PORT, forwardAddresses = FORWARD_ADDRESSES, testModeActive } = opts;
+    const { port = DEFAULT_PORT, forwardAddresses = FORWARD_ADDRESSES, testModeActive } = opts;
 
     this.port = port;
     this.forwardAddresses = forwardAddresses;
@@ -267,6 +266,41 @@ class F1TelemetryClient extends EventEmitter {
       this.socket = undefined;
     });
   }
+
+  /**
+   * Method to add a new forward address
+    */
+  addForwardAddress(address: Address) {
+    if (!this.forwardAddresses) {
+      this.forwardAddresses = [];
+    }
+
+    this.forwardAddresses.push(address);
+
+    return this.forwardAddresses;
+  };
+
+  /**
+   * Method to remove a forward address
+    */
+  removeForwardAddress(address: Address) {
+    if (!this.forwardAddresses) {
+      return;
+    }
+
+    // remove address by splicing array
+    this.forwardAddresses.splice(
+      this.forwardAddresses.findIndex(
+        (forwardAddress) =>
+          forwardAddress.port === address.port &&
+          forwardAddress.ip === address.ip 
+      ),
+      1
+    );
+
+    return this.forwardAddresses;
+  }
+
 }
 
 export {
