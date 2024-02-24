@@ -45,15 +45,18 @@ class F1TelemetryClient extends EventEmitter {
   constructor(opts: Options = {}) {
     super();
 
-    const { port = DEFAULT_PORT, forwardAddresses = FORWARD_ADDRESSES, testModeActive } = opts;
+    const {
+      port = DEFAULT_PORT,
+      forwardAddresses = FORWARD_ADDRESSES,
+      testModeActive,
+    } = opts;
 
     this.port = port;
     this.forwardAddresses = forwardAddresses;
     this.socket = dgram.createSocket('udp4');
 
     this.testModeActive = testModeActive;
-    if(testModeActive) this.testMode = initializeTestMode.call(this);
-
+    if (testModeActive) this.testMode = initializeTestMode.call(this);
   }
 
   /**
@@ -184,17 +187,19 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    */
   handleTestModeMessage(message: Buffer) {
-    const { testMode } = this;
-    if(!testMode) return;
+    const {testMode} = this;
+    if (!testMode) return;
 
     testMode.bufferStream.write(`${JSON.stringify(message.toJSON().data)},\n`);
     testMode.bufferCount += 1;
 
-    if(testMode.bufferCount > 10000) {
+    if (testMode.bufferCount > 10000) {
       testMode.bufferStream.end();
       testMode.fileCount++;
       testMode.bufferCount = 0;
-      testMode.bufferStream = fs.createWriteStream(`${testMode.logDir}/chunk_${testMode.fileCount}.json`);
+      testMode.bufferStream = fs.createWriteStream(
+        `${testMode.logDir}/chunk_${testMode.fileCount}.json`
+      );
     }
   }
 
@@ -241,11 +246,9 @@ class F1TelemetryClient extends EventEmitter {
     });
 
     this.socket.on('message', (m) => {
-      if(this.testModeActive && this.testMode) {
+      if (this.testModeActive && this.testMode) {
         this.handleTestModeMessage(m);
-      } 
-      else this.handleMessage(m);
-    
+      } else this.handleMessage(m);
     });
     this.socket.bind({
       port: this.port,
@@ -269,7 +272,7 @@ class F1TelemetryClient extends EventEmitter {
 
   /**
    * Method to add a new forward address
-    */
+   */
   addForwardAddress(address: Address) {
     if (!this.forwardAddresses) {
       this.forwardAddresses = [];
@@ -278,11 +281,11 @@ class F1TelemetryClient extends EventEmitter {
     this.forwardAddresses.push(address);
 
     return this.forwardAddresses;
-  };
+  }
 
   /**
    * Method to remove a forward address
-    */
+   */
   removeForwardAddress(address: Address) {
     if (!this.forwardAddresses) {
       return;
@@ -293,14 +296,13 @@ class F1TelemetryClient extends EventEmitter {
       this.forwardAddresses.findIndex(
         (forwardAddress) =>
           forwardAddress.port === address.port &&
-          forwardAddress.ip === address.ip 
+          forwardAddress.ip === address.ip
       ),
       1
     );
 
     return this.forwardAddresses;
   }
-
 }
 
 export {
@@ -316,12 +318,12 @@ function initializeTestMode() {
   const localAppDataDirectory = path.join(os.homedir(), 'AppData', 'Local');
   const testLogDir = `${localAppDataDirectory}/Podium/udp_logs/${Date.now()}`;
   fs.mkdirSync(testLogDir);
-  
+
   const testMode: TestMode = {
     bufferStream: fs.createWriteStream(`${testLogDir}/chunk_${0}.json`),
     fileCount: 0,
     bufferCount: 0,
-    logDir: testLogDir
+    logDir: testLogDir,
   };
 
   return testMode;
