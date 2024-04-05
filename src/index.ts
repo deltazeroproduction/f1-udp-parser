@@ -239,9 +239,9 @@ class F1TelemetryClient extends EventEmitter {
       }
 
       const address = this.socket.address() as AddressInfo;
-      console.log(
-        `UDP Client listening on ${address.address}:${address.port} 🏎`
-      );
+      // console.log(
+      //   `UDP Client listening on ${address.address}:${address.port} 🏎`
+      // );
       this.socket.setBroadcast(true);
     });
 
@@ -265,7 +265,7 @@ class F1TelemetryClient extends EventEmitter {
     }
 
     return this.socket.close(() => {
-      console.log(`UDP Client closed 🏁`);
+      // console.log(`UDP Client closed 🏁`);
       this.socket = undefined;
     });
   }
