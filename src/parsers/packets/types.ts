@@ -126,6 +126,34 @@ export interface PacketSessionData {
   m_numSafetyCarPeriods: number;
   m_numVirtualSafetyCarPeriods: number;
   m_numRedFlagPeriods: number;
+  m_equalCarPerformance: number;
+  m_recoveryMode: number;
+  m_flashbackLimit: number;
+  m_surfaceType: number;
+  m_lowFuelMode: number;
+  m_raceStarts: number;
+  m_tyreTemperature: number;
+  m_pitLaneTyreSim: number;
+  m_carDamage: number;
+  m_carDamageRate: number;
+  m_collisions: number;
+  m_collisionsOffForFirstLapOnly: number;
+  m_mpUnsafePitRelease: number;
+  m_mpOffForGriefing: number;
+  m_cornerCuttingStringency: number;
+  m_parcFermeRules: number;
+  m_pitStopExperience: number;
+  m_safetyCar: number;
+  m_safetyCarExperience: number;
+  m_formationLap: number;
+  m_formationLapExperience: number;
+  m_redFlags: number;
+  m_affectsLicenceLevelSolo: number;
+  m_affectsLicenceLevelMP: number;
+  m_numSessionsInWeekend: number;
+  m_weekendStructure: number[];
+  m_sector2LapDistanceStart: number;
+  m_sector3LapDistanceStart: number;
 }
 
 export interface LapData {
@@ -135,8 +163,12 @@ export interface LapData {
   m_sector1TimeMinutes: number;
   m_sector2TimeInMS: number;
   m_sector2TimeMinutes: number;
-  m_deltaToCarInFrontInMS: number;
-  m_deltaToRaceLeaderInMS: number;
+  m_deltaToCarInFrontInMS: number; // F1 23
+  m_deltaToRaceLeaderInMS: number; // F1 23
+  m_deltaToCarInFrontMSPart: number; // F1 24 replaces 2 above
+  m_deltaToCarInFrontMinutesPart: number; // F1 24
+  m_deltaToRaceLeaderMSPart: number; // F1 24
+  m_deltaToRaceLeaderMinutesPart: number; // F1 24
   m_lapDistance: number;
   m_totalDistance: number;
   m_safetyCarDelta: number;
@@ -147,9 +179,9 @@ export interface LapData {
   m_sector: number;
   m_currentLapInvalid: number;
   m_penalties: number;
-  m_warnings: number; // f1 22
-  m_totalWarnings: number;
-  m_cornerCuttingWarnings: number;
+  m_warnings: number; // F1 22
+  m_totalWarnings: number; // F1 23/24 replaces above
+  m_cornerCuttingWarnings: number; // F1 23/24 replaces above
   m_numUnservedDriveThroughPens: number;
   m_numUnservedStopGoPens: number;
   m_gridPosition: number;
@@ -159,6 +191,8 @@ export interface LapData {
   m_pitLaneTimeInLaneInMS: number;
   m_pitStopTimerInMS: number;
   m_pitStopShouldServePen: number;
+  m_speedTrapFastestSpeed: number;
+  m_speedTrapFastestLap: number;
 }
 
 export interface PacketLapData {
@@ -189,6 +223,10 @@ export interface EventDataDetails {
   buttonStatus: number;
   overtakingVehicleIdx: number;
   beingOvertakenVehicleIdx: number;
+  safetyCarType: number;
+  eventType: number; // named bad, it's deployment status
+  vehicle1Idx: number; // named bad, it's vehicle index of the first vehicle involved in the collision
+  vehicle2Idx: number; // named bad, it's vehicle index of the second vehicle involved in the collision
 }
 
 export interface PacketEventData {
@@ -208,6 +246,7 @@ export interface ParticipantData {
   m_name: string;
   m_yourTelemetry: number;
   m_showOnlineNames: number;
+  m_techLevel: number;
   m_platform: number;
 }
 
@@ -234,6 +273,7 @@ export interface CarSetupData {
   m_rearSuspensionHeight: number;
   m_brakePressure: number;
   m_brakeBias: number;
+  m_engineBraking: number;
   m_rearLeftTyrePressure: number;
   m_rearRightTyrePressure: number;
   m_frontLeftTyrePressure: number;
@@ -245,6 +285,7 @@ export interface CarSetupData {
 export interface PacketCarSetupData {
   m_header: PacketHeader;
   m_carSetups: CarSetupData[];
+  m_nextFrontWingValue: number;
 }
 
 export interface CarTelemetryData {
@@ -336,6 +377,9 @@ export interface LobbyInfoData {
   m_platform: number;
   m_name: string;
   m_carNumber: number;
+  m_yourTelemetry: number;
+  m_showOnlineNames: number;
+  m_techLevel: number;
   m_readyStatus: number;
 }
 
@@ -445,4 +489,31 @@ export interface PacketMotionExData {
   m_angularAccelerationZ: number;
   m_frontWheelsAngle: number;
   m_wheelVertForce: number[];
+  m_frontAeroHeight: number;
+  m_rearAeroHeight: number;
+  m_frontRollAngle: number;
+  m_rearRollAngle: number;
+  m_chassisYaw: number;
+}
+
+export interface TimeTrialDataSet {
+  m_carIdx: number;
+  m_teamId: number;
+  m_lapTimeInMS: number;
+  m_sector1TimeInMS: number;
+  m_sector2TimeInMS: number;
+  m_sector3TimeInMS: number;
+  m_tractionControl: number;
+  m_gearboxAssist: number;
+  m_antiLockBrakes: number;
+  m_equalCarPerformance: number;
+  m_customSetup: number;
+  m_valid: number;
+}
+
+export interface PacketTimeTrialData {
+  m_header: PacketHeader;
+  m_playerSessionBestDataSet: TimeTrialDataSet[];
+  m_personalBestDataSet: TimeTrialDataSet[];
+  m_rivalDataSet: TimeTrialDataSet[];
 }
