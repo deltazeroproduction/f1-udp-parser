@@ -7,4 +7,6 @@ export const FORMULAS: string[] = [
   'Supercars',
   'Esports',
   'F2 2021',
+  'F1 World',
+  'F1 Elimination',
 ];
