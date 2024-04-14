@@ -37,7 +37,7 @@ export interface CarMotionData {
 export interface PacketMotionData {
   m_header: PacketHeader;
   m_carMotionData: CarMotionData[];
-  m_suspensionPosition: number[];
+  m_suspensionPosition: number[]; // all below were in the the motion packet in 22, but moved to motionEx for 23 and beyond
   m_suspensionVelocity: number[];
   m_suspensionAcceleration: number[];
   m_wheelSpeed: number[];
@@ -163,6 +163,10 @@ export interface LapData {
   m_sector1TimeMinutes: number;
   m_sector2TimeInMS: number;
   m_sector2TimeMinutes: number;
+  m_sector1TimeMSPart: number; // F1 24 replaces 4 above
+  m_sector2TimeMSPart: number; // F1 24
+  m_sector1TimeMinutesPart: number; // F1 24
+  m_sector2TimeMinutesPart: number; // F1 24
   m_deltaToCarInFrontInMS: number; // F1 23
   m_deltaToRaceLeaderInMS: number; // F1 23
   m_deltaToCarInFrontMSPart: number; // F1 24 replaces 2 above
@@ -246,7 +250,7 @@ export interface ParticipantData {
   m_name: string;
   m_yourTelemetry: number;
   m_showOnlineNames: number;
-  m_techLevel: number;
+  m_techLevel: number; // F1 24 only
   m_platform: number;
 }
 
@@ -273,7 +277,7 @@ export interface CarSetupData {
   m_rearSuspensionHeight: number;
   m_brakePressure: number;
   m_brakeBias: number;
-  m_engineBraking: number;
+  m_engineBraking: number; // F1 24 only
   m_rearLeftTyrePressure: number;
   m_rearRightTyrePressure: number;
   m_frontLeftTyrePressure: number;
@@ -285,7 +289,7 @@ export interface CarSetupData {
 export interface PacketCarSetupData {
   m_header: PacketHeader;
   m_carSetups: CarSetupData[];
-  m_nextFrontWingValue: number;
+  m_nextFrontWingValue: number; // F1 24 only
 }
 
 export interface CarTelemetryData {
@@ -426,6 +430,12 @@ export interface LapHistoryData {
   m_sector2TimeMinutes: number;
   m_sector3TimeInMS: number;
   m_sector3TimeMinutes: number;
+  m_sector1TimeMSPart: number; // F1 24 replaces 6 above
+  m_sector1TimeMinutesPart: number; // F1 24
+  m_sector2TimeMSPart: number; // F1 24
+  m_sector2TimeMinutesPart: number; // F1 24
+  m_sector3TimeMSPart: number; // F1 24
+  m_sector3TimeMinutesPart: number; // F1 24
   m_lapValidBitFlags: number;
 }
 
@@ -513,7 +523,7 @@ export interface TimeTrialDataSet {
 
 export interface PacketTimeTrialData {
   m_header: PacketHeader;
-  m_playerSessionBestDataSet: TimeTrialDataSet[];
-  m_personalBestDataSet: TimeTrialDataSet[];
-  m_rivalDataSet: TimeTrialDataSet[];
+  m_playerSessionBestDataSet: TimeTrialDataSet;
+  m_personalBestDataSet: TimeTrialDataSet;
+  m_rivalDataSet: TimeTrialDataSet;
 }

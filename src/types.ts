@@ -13,6 +13,7 @@ import {
   PacketSessionHistoryDataParser,
   PacketTyreSetsDataParser,
   PacketMotionExDataParser,
+  PacketTimeTrialDataParser,
 } from './parsers/packets';
 
 export interface Options {
@@ -37,6 +38,7 @@ export interface Address {
 export interface ParsedMessage {
   packetID: string;
   packetData:
+    | PacketTimeTrialDataParser
     | PacketMotionExDataParser
     | PacketTyreSetsDataParser
     | PacketSessionHistoryDataParser

@@ -55,6 +55,9 @@ client.on(PACKETS.finalClassification, console.log);
 client.on(PACKETS.lobbyInfo, console.log);
 client.on(PACKETS.carDamage, console.log);
 client.on(PACKETS.sessionHistory, console.log);
+client.on(PACKETS.tyreSets, console.log); // F1 23 and 24 only
+client.on(PACKETS.motionEx, console.log); // F1 23 and 24 only
+client.on(PACKETS.timeTrial, console.log); // F1 24 only
 
 // to start listening:
 client.start();

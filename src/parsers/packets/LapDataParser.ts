@@ -8,13 +8,22 @@ export class LapDataParser extends F1Parser {
 
     this.uint32le('m_lastLapTimeInMS').uint32le('m_currentLapTimeInMS');
 
-    if (packetFormat === 2023 || packetFormat === 2024) {
+    if (packetFormat === 2023) {
       this.uint16le('m_sector1TimeInMS')
         .uint8('m_sector1TimeMinutes')
         .uint16le('m_sector2TimeInMS')
         .uint8('m_sector2TimeMinutes')
         .uint16le('m_deltaToCarInFrontInMS')
         .uint16le('m_deltaToRaceLeaderInMS');
+    } else if (packetFormat === 2024) {
+      this.uint16le('m_sector1TimeMSPart')
+        .uint8('m_sector1TimeMinutes')
+        .uint16le('m_sector2TimeMSPart')
+        .uint8('m_sector2TimeMinutesPart')
+        .uint16le('m_deltaToCarInFrontMSPart')
+        .uint8('m_deltaToCarInFrontMinutesPart')
+        .uint16le('m_deltaToRaceLeaderMSPart')
+        .uint8('m_deltaToRaceLeaderMinutesPart');
     } else {
       this.uint16le('m_sector1TimeInMS').uint16le('m_sector2TimeInMS');
     }
