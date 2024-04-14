@@ -13,4 +13,5 @@ export const PACKETS = {
   sessionHistory: 'sessionHistory',
   tyreSets: 'tyreSets',
   motionEx: 'motionEx',
+  timeTrial: 'timeTrial',
 };
