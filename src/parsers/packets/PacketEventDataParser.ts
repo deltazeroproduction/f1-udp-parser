@@ -119,6 +119,22 @@ export class OvertakeParser extends F1Parser {
   }
 }
 
+export class SafetyCarParser extends F1Parser {
+  constructor() {
+    super();
+
+    this.endianess('little').uint8('safetyCarType').uint8('eventType');
+  }
+}
+
+export class CollisionParser extends F1Parser {
+  constructor() {
+    super();
+
+    this.endianess('little').uint8('vehicle1Idx').uint8('vehicle2Idx');
+  }
+}
+
 export class PacketEventDataParser extends F1Parser {
   data: PacketEventData;
 
@@ -137,6 +153,10 @@ export class PacketEventDataParser extends F1Parser {
 
     if (packetFormat === 2023) {
       this.unpack2023Format(buffer, packetFormat);
+    }
+
+    if (packetFormat === 2024) {
+      this.unpack2024Format(buffer, packetFormat);
     }
 
     this.data = this.fromBuffer(buffer);
@@ -201,6 +221,42 @@ export class PacketEventDataParser extends F1Parser {
       this.nest('m_eventDetails', {type: new ButtonsParser()});
     } else if (eventStringCode === EVENT_CODES.Overtake) {
       this.nest('m_eventDetails', {type: new OvertakeParser()});
+    }
+  };
+
+  unpack2024Format = (buffer: Buffer, packetFormat: number) => {
+    const eventStringCode = this.getEventStringCode(buffer, packetFormat);
+
+    if (eventStringCode === EVENT_CODES.FastestLap) {
+      this.nest('m_eventDetails', {type: new FastestLapParser()});
+    } else if (eventStringCode === EVENT_CODES.Retirement) {
+      this.nest('m_eventDetails', {type: new RetirementParser()});
+    } else if (eventStringCode === EVENT_CODES.TeammateInPits) {
+      this.nest('m_eventDetails', {type: new TeamMateInPitsParser()});
+    } else if (eventStringCode === EVENT_CODES.RaceWinner) {
+      this.nest('m_eventDetails', {type: new RaceWinnerParser()});
+    } else if (eventStringCode === EVENT_CODES.PenaltyIssued) {
+      this.nest('m_eventDetails', {type: new PenaltyParser()});
+    } else if (eventStringCode === EVENT_CODES.SpeedTrapTriggered) {
+      this.nest('m_eventDetails', {type: new SpeedTrapParser()});
+    } else if (eventStringCode === EVENT_CODES.StartLights) {
+      this.nest('m_eventDetails', {type: new StartLightsParser()});
+    } else if (eventStringCode === EVENT_CODES.DriveThroughServed) {
+      this.nest('m_eventDetails', {
+        type: new DriveThroughPenaltyServedParser(),
+      });
+    } else if (eventStringCode === EVENT_CODES.StopGoServed) {
+      this.nest('m_eventDetails', {type: new StopGoPenaltyServedParser()});
+    } else if (eventStringCode === EVENT_CODES.Flashback) {
+      this.nest('m_eventDetails', {type: new FlashbackParser()});
+    } else if (eventStringCode === EVENT_CODES.ButtonStatus) {
+      this.nest('m_eventDetails', {type: new ButtonsParser()});
+    } else if (eventStringCode === EVENT_CODES.Overtake) {
+      this.nest('m_eventDetails', {type: new OvertakeParser()});
+    } else if (eventStringCode === EVENT_CODES.SafetyCar) {
+      this.nest('m_eventDetails', {type: new SafetyCarParser()});
+    } else if (eventStringCode === EVENT_CODES.Collision) {
+      this.nest('m_eventDetails', {type: new CollisionParser()});
     }
   };
 

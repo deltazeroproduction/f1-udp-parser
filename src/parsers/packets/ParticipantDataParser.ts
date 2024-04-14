@@ -20,5 +20,11 @@ export class ParticipantDataParser extends F1Parser {
     if (packetFormat === 2023) {
       this.uint8('m_showOnlineNames').uint8('m_platform');
     }
+
+    if (packetFormat === 2024) {
+      this.uint8('m_showOnlineNames')
+        .uint16le('m_techLevel')
+        .uint8('m_platform');
+    }
   }
 }

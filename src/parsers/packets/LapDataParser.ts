@@ -8,7 +8,7 @@ export class LapDataParser extends F1Parser {
 
     this.uint32le('m_lastLapTimeInMS').uint32le('m_currentLapTimeInMS');
 
-    if (packetFormat === 2023) {
+    if (packetFormat === 2023 || packetFormat === 2024) {
       this.uint16le('m_sector1TimeInMS')
         .uint8('m_sector1TimeMinutes')
         .uint16le('m_sector2TimeInMS')
@@ -30,7 +30,7 @@ export class LapDataParser extends F1Parser {
       .uint8('m_currentLapInvalid')
       .uint8('m_penalties');
 
-    if (packetFormat === 2023) {
+    if (packetFormat === 2023 || packetFormat === 2024) {
       this.uint8('m_totalWarnings').uint8('m_cornerCuttingWarnings');
     } else {
       this.uint8('m_warnings');
@@ -45,5 +45,9 @@ export class LapDataParser extends F1Parser {
       .uint16le('m_pitLaneTimeInLaneInMS')
       .uint16le('m_pitStopTimerInMS')
       .uint8('m_pitStopShouldServePen');
+
+    if (packetFormat === 2024) {
+      this.floatle('m_speedTrapFastestSpeed').uint8('m_speedTrapFastestLap');
+    }
   }
 }

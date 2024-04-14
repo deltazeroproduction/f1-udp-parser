@@ -6,7 +6,7 @@ export class PacketHeaderParser extends F1Parser {
 
     this.endianess('little').uint16le('m_packetFormat');
 
-    if (packetFormat === 2023) {
+    if (packetFormat === 2023 || packetFormat === 2024) {
       this.uint8('m_gameYear');
     }
 
@@ -18,7 +18,7 @@ export class PacketHeaderParser extends F1Parser {
       .floatle('m_sessionTime')
       .uint32('m_frameIdentifier');
 
-    if (packetFormat === 2023) {
+    if (packetFormat === 2023 || packetFormat === 2024) {
       this.uint32('m_overallFrameIdentifier');
     }
 

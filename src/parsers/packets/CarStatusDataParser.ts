@@ -20,7 +20,7 @@ export class CarStatusDataParser extends F1Parser {
       .uint8('m_visualTyreCompound')
       .uint8('m_tyresAgeLaps');
 
-    if (packetFormat === 2023) {
+    if (packetFormat === 2023 || packetFormat === 2024) {
       this.int8('m_vehicleFiaFlags')
         .floatle('m_enginePowerICE')
         .floatle('m_enginePowerMGUK');

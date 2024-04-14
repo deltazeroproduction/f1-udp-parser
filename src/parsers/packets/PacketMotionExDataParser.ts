@@ -61,6 +61,14 @@ export class PacketMotionExDataParser extends F1Parser {
         type: new Parser().floatle(''),
       });
 
+    if (packetFormat === 2024) {
+      this.floatle('m_frontAeroHeight')
+        .floatle('m_rearAeroHeight')
+        .floatle('m_frontRollAngle')
+        .floatle('m_rearRollAngle')
+        .floatle('m_chassisYaw');
+    }
+
     this.data = this.fromBuffer(buffer);
   }
 }

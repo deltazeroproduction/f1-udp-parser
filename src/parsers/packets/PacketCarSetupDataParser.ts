@@ -15,8 +15,12 @@ export class PacketCarSetupDataParser extends F1Parser {
       })
       .array('m_carSetups', {
         length: 22,
-        type: new CarSetupDataParser(),
+        type: new CarSetupDataParser(packetFormat),
       });
+
+    if (packetFormat === 2024) {
+      this.floatle('m_nextFrontWingValue');
+    }
 
     this.data = this.fromBuffer(buffer);
   }
