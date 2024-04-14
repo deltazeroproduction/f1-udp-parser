@@ -71,7 +71,9 @@ client.stop();
 The following links contain information that summarises the UDP data structures so that developers of supporting hardware or software are able to configure these to work correctly with the F1 game.
 
 [F1 2022 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-22-UDP-Specification/td-p/11551274)
+
 [F1 23 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-23-UDP-Specification/m-p/12633159)
+
 [F1 24 UDP Spec](https://answers.ea.com/t5/General-Discussion-Feedback/F1-24-Beta-UDP-Specification/m-p/13650207#M1048)
 
 ## License
