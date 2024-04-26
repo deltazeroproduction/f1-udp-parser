@@ -1,6 +1,6 @@
 {
   "name": "@deltazeroproduction/f1-udp-parser",
-  "version": "1.0.13",
+  "version": "1.1.0",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "files": [
