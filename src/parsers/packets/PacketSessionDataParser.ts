@@ -36,7 +36,7 @@ export class PacketSessionDataParser extends F1Parser {
       .uint8('m_networkGame')
       .uint8('m_numWeatherForecastSamples');
 
-    if (packetFormat === 2023) {
+    if (packetFormat === 2022 || packetFormat === 2023) {
       this.array('m_weatherForecastSamples', {
         length: 56,
         type: new WeatherForecastSampleParser(),
