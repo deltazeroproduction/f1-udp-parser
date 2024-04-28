@@ -320,6 +320,7 @@ export {
 
 function initializeTestMode() {
   const localAppDataDirectory = path.join(os.homedir(), 'AppData', 'Local');
+  // directory of logs from Test Mode
   const testLogDir = `${localAppDataDirectory}/Podium/udp_logs/${Date.now()}`;
   fs.mkdirSync(testLogDir);
 
