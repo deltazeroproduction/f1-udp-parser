@@ -17,7 +17,7 @@ export class LapDataParser extends F1Parser {
         .uint16le('m_deltaToRaceLeaderInMS');
     } else if (packetFormat === 2024) {
       this.uint16le('m_sector1TimeMSPart')
-        .uint8('m_sector1TimeMinutes')
+        .uint8('m_sector1TimeMinutesPart')
         .uint16le('m_sector2TimeMSPart')
         .uint8('m_sector2TimeMinutesPart')
         .uint16le('m_deltaToCarInFrontMSPart')
