@@ -19,5 +19,6 @@ export const GAME_MODES: {[index: number]: string} = {
   23: 'Career 24',
   24: 'Career 24 Online',
   25: 'My Team Career 24',
+  26: 'Curated Career 24',
   127: 'Benchmark',
 };
