@@ -23,4 +23,5 @@ export const TYRES: {[index: number]: Tyre} = {
   19: {color: '#ffffff', name: 'C2'},
   20: {color: '#ffffff', name: 'C1'},
   21: {color: '#ffffff', name: 'C0'},
+  22: {color: '#f92d29', name: 'C6'},
 };
