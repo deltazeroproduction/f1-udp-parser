@@ -210,6 +210,7 @@ export interface EventDataDetails {
   // each session needs to be interpreted by the Event Code sent
   vehicleIdx: number;
   lapTime: number;
+  reason: number;
   penaltyType: number;
   infringementType: number;
   otherVehicleIdx: number;
@@ -222,6 +223,7 @@ export interface EventDataDetails {
   fastestVehicleIdxInSession: number;
   fastestSpeedInSession: number;
   numLights: number;
+  stopTime: number;
   flashbackFrameIdentifier: number;
   flashbackSessionTime: number;
   buttonStatus: number;
@@ -239,6 +241,12 @@ export interface PacketEventData {
   m_eventDetails: EventDataDetails;
 }
 
+export interface LiveryColour {
+  m_red: number;
+  m_green: number;
+  m_blue: number;
+}
+
 export interface ParticipantData {
   m_aiControlled: number;
   m_driverId: number;
@@ -252,6 +260,8 @@ export interface ParticipantData {
   m_showOnlineNames: number;
   m_techLevel: number; // F1 24 only
   m_platform: number;
+  m_numColours: number; // F1 25 only
+  m_liveryColour: LiveryColour[]; // F1 25 only
 }
 
 export interface PacketParticipantsData {
