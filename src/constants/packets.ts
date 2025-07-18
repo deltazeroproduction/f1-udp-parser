@@ -14,4 +14,5 @@ export const PACKETS = {
   tyreSets: 'tyreSets',
   motionEx: 'motionEx',
   timeTrial: 'timeTrial',
+  lapPositions: 'lapPositions',
 };
