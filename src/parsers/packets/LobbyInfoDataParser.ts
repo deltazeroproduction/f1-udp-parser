@@ -9,7 +9,20 @@ export class LobbyInfoDataParser extends F1Parser {
       this.uint8('m_platform');
     }
 
-    this.string('m_name', {length: 48, stripNull: true}).uint8('m_carNumber');
+    // Name length: 32 in 2025, 48 in 2024 and earlier
+    if (packetFormat === 2025) {
+      this.string('m_name', {
+        length: 32,
+        stripNull: true,
+      });
+    } else {
+      this.string('m_name', {
+        length: 48,
+        stripNull: true,
+      });
+    }
+    
+    this.uint8('m_carNumber');
 
     if (packetFormat === 2024) {
       this.uint8('m_yourTelemetry')
