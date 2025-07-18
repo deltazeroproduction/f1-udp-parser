@@ -242,9 +242,9 @@ export interface PacketEventData {
 }
 
 export interface LiveryColour {
-  m_red: number;
-  m_green: number;
-  m_blue: number;
+  red: number;
+  green: number;
+  blue: number;
 }
 
 export interface ParticipantData {
@@ -368,6 +368,7 @@ export interface FinalClassificationData {
   m_points: number;
   m_numPitStops: number;
   m_resultStatus: number;
+  m_resultReason: number; // F1 25 only
   m_bestLapTimeInMs: number;
   m_totalRaceTime: number;
   m_penaltiesTime: number;
@@ -407,6 +408,7 @@ export interface CarDamageData {
   m_tyresWear: number[];
   m_tyresDamage: number[];
   m_brakesDamage: number[];
+  m_tyreBlisters: number[]; // F1 25 only
   m_frontLeftWingDamage: number;
   m_frontRightWingDamage: number;
   m_rearWingDamage: number;
@@ -514,6 +516,9 @@ export interface PacketMotionExData {
   m_frontRollAngle: number;
   m_rearRollAngle: number;
   m_chassisYaw: number;
+  m_chassisPitch: number;
+  m_wheelCamber: number[];
+  m_wheelCamberGain: number[];
 }
 
 export interface TimeTrialDataSet {
@@ -536,4 +541,12 @@ export interface PacketTimeTrialData {
   m_playerSessionBestDataSet: TimeTrialDataSet;
   m_personalBestDataSet: TimeTrialDataSet;
   m_rivalDataSet: TimeTrialDataSet;
+}
+
+// F1 25 only
+export interface PacketLapPositionsData {
+  m_header: PacketHeader;
+  m_numLaps: number;
+  m_lapStart: number;
+  m_positionForVehicleIdx: number[][];
 }
