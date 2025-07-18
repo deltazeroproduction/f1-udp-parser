@@ -5,7 +5,7 @@ export class LapHistoryDataParser extends F1Parser {
     super();
     this.endianess('little').uint32('m_lapTimeInMS');
 
-    if (packetFormat === 2024) {
+    if (packetFormat === 2024 || packetFormat === 2025) {
       this.uint16le('m_sector1TimeMSPart')
         .uint8('m_sector1TimeMinutesPart')
         .uint16le('m_sector2TimeMSPart')

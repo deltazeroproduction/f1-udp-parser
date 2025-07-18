@@ -61,7 +61,7 @@ export class PacketMotionExDataParser extends F1Parser {
         type: new Parser().floatle(''),
       });
 
-    if (packetFormat === 2024) {
+    if (packetFormat === 2024 || packetFormat === 2025) {
       this.floatle('m_frontAeroHeight')
         .floatle('m_rearAeroHeight')
         .floatle('m_frontRollAngle')

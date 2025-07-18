@@ -5,7 +5,7 @@ export class LobbyInfoDataParser extends F1Parser {
     super();
     this.uint8('m_aiControlled').uint8('m_teamId').uint8('m_nationality');
 
-    if (packetFormat === 2023 || packetFormat === 2024) {
+    if (packetFormat === 2023 || packetFormat === 2024 || packetFormat === 2025) {
       this.uint8('m_platform');
     }
 
@@ -24,7 +24,7 @@ export class LobbyInfoDataParser extends F1Parser {
     
     this.uint8('m_carNumber');
 
-    if (packetFormat === 2024) {
+    if (packetFormat === 2024 || packetFormat === 2025) {
       this.uint8('m_yourTelemetry')
         .uint8('m_showOnlineNames')
         .uint16le('m_techLevel');

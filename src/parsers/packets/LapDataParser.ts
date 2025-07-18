@@ -15,7 +15,7 @@ export class LapDataParser extends F1Parser {
         .uint8('m_sector2TimeMinutes')
         .uint16le('m_deltaToCarInFrontInMS')
         .uint16le('m_deltaToRaceLeaderInMS');
-    } else if (packetFormat === 2024) {
+    } else if (packetFormat === 2024 || packetFormat === 2025) {
       this.uint16le('m_sector1TimeMSPart')
         .uint8('m_sector1TimeMinutesPart')
         .uint16le('m_sector2TimeMSPart')
@@ -39,7 +39,7 @@ export class LapDataParser extends F1Parser {
       .uint8('m_currentLapInvalid')
       .uint8('m_penalties');
 
-    if (packetFormat === 2023 || packetFormat === 2024) {
+    if (packetFormat === 2023 || packetFormat === 2024 || packetFormat === 2025) {
       this.uint8('m_totalWarnings').uint8('m_cornerCuttingWarnings');
     } else {
       this.uint8('m_warnings');
@@ -55,7 +55,7 @@ export class LapDataParser extends F1Parser {
       .uint16le('m_pitStopTimerInMS')
       .uint8('m_pitStopShouldServePen');
 
-    if (packetFormat === 2024) {
+    if (packetFormat === 2024 || packetFormat === 2025) {
       this.floatle('m_speedTrapFastestSpeed').uint8('m_speedTrapFastestLap');
     }
   }

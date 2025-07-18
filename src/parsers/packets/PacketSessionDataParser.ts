@@ -43,7 +43,7 @@ export class PacketSessionDataParser extends F1Parser {
       });
     }
 
-    if (packetFormat === 2024) {
+    if (packetFormat === 2024 || packetFormat === 2025) {
       this.array('m_weatherForecastSamples', {
         length: 64,
         type: new WeatherForecastSampleParser(),
@@ -82,7 +82,7 @@ export class PacketSessionDataParser extends F1Parser {
         .uint8('m_numRedFlagPeriods');
     }
 
-    if (packetFormat === 2024) {
+    if (packetFormat === 2024 || packetFormat === 2025) {
       this.uint8('m_speedUnitsLeadPlayer')
         .uint8('m_temperatureUnitsLeadPlayer')
         .uint8('m_speedUnitsSecondaryPlayer')
