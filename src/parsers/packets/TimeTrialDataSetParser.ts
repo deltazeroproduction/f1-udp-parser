@@ -6,6 +6,7 @@ export class TimeTrialDataSetParser extends F1Parser {
     this.endianess('little')
       .uint8('m_carIdx')
       .uint8('m_teamId')
+      .uint32('m_lapTimeInMS')
       .uint32('m_sector1TimeInMS')
       .uint32('m_sector2TimeInMS')
       .uint32('m_sector3TimeInMS')
