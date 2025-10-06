@@ -11,6 +11,13 @@ export interface Driver {
 
 export interface Track {
   name: string;
+  lat: number;
+  lon: number;
+}
+
+export interface Formula {
+  name: string;
+  weight: number;
 }
 
 export type EventCode = string;

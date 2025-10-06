@@ -20,4 +20,6 @@ export const EVENT_CODES: {[index: string]: EventCode} = {
   ButtonStatus: 'BUTN',
   RedFlag: 'RDFL',
   Overtake: 'OVTK',
+  SafetyCar: 'SCAR',
+  Collision: 'COLL',
 };
