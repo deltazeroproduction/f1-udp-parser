@@ -2,7 +2,7 @@ import {Parser} from 'binary-parser';
 import {F1Parser} from '../F1Parser';
 
 export class CarDamageDataParser extends F1Parser {
-  constructor() {
+  constructor(packetFormat: number) {
     super();
     this.array('m_tyresWear', {
       length: 4,
@@ -16,6 +16,14 @@ export class CarDamageDataParser extends F1Parser {
         length: 4,
         type: new Parser().uint8(''),
       });
+    
+      // 2025 m_tyreBlisters[4]
+    if (packetFormat === 2025) {
+      this.array('m_tyreBlisters', {
+        length: 4,
+        type: new Parser().uint8(''),
+      });
+    }
 
     this.uint8('m_frontLeftWingDamage')
       .uint8('m_frontRightWingDamage')

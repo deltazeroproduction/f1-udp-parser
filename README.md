@@ -2,7 +2,7 @@
 
 The F1 series of games support the outputting of key game data via a UDP data stream. This data can be interpreted by external apps or connected peripherals for a range of different uses, including providing additional telemetry information, customised HUD displays, motion platform hardware support or providing force feedback data for custom steering wheels.
 
-This is a TypeScript UDP client and telemetry parser for EA - Codemaster's F1 22 & F1 23.
+This is a TypeScript UDP client and telemetry parser for EA - Codemaster's F1 2022, F1 23, F1 24, and F1 25.
 
 ## Installing
 
@@ -16,7 +16,7 @@ or
 $ yarn add @deltazeroproduction/f1-udp-parser
 ```
 
-## Running the playground
+## Running the parser
 
 ```
 $ npm run start
@@ -55,6 +55,10 @@ client.on(PACKETS.finalClassification, console.log);
 client.on(PACKETS.lobbyInfo, console.log);
 client.on(PACKETS.carDamage, console.log);
 client.on(PACKETS.sessionHistory, console.log);
+client.on(PACKETS.tyreSets, console.log); // F1 23 and 24 only
+client.on(PACKETS.motionEx, console.log); // F1 23 and 24 only
+client.on(PACKETS.timeTrial, console.log); // F1 24 only
+client.on(PACKETS.lapPositions, console.log); // F1 25 only
 
 // to start listening:
 client.start();
@@ -68,6 +72,12 @@ client.stop();
 The following links contain information that summarises the UDP data structures so that developers of supporting hardware or software are able to configure these to work correctly with the F1 game.
 
 [F1 2022 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-22-UDP-Specification/td-p/11551274)
+
+[F1 23 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-23-UDP-Specification/m-p/12633159)
+
+[F1 24 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-24-UDP-Specification/m-p/13745220)
+
+[F1 25 UDP Spec](https://forums.ea.com/blog/f1-games-game-info-hub-en/ea-sports%E2%84%A2-f1%C2%AE25-udp-specification/12187347)
 
 ## License
 
